@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interprete index{% endblock %}
+
+{% block body %}
+    <h1>Interprete index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for interprete in interpretes %}
+            <tr>
+                <td>{{ interprete.id }}</td>
+                <td>{{ interprete.nom }}</td>
+                <td>
+                    <a href="{{ path('app_interprete_show', {'id': interprete.id}) }}">show</a>
+                    <a href="{{ path('app_interprete_edit', {'id': interprete.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_interprete_new') }}">Create new</a>
+{% endblock %}

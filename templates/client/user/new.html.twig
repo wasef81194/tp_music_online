@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="card p-4 card-auth d-flex flex-column">
+        <h1>Inscription</h1>
+        {% for message in app.flashes('inscription-error') %}
+            <div class="alert alert-danger mt-2 p-2">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('inscription-success') %}
+            <div class="alert alert-success mt-2 p-2">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ include('client/user/_form.html.twig') }}
+        <p class="mt-4">Vous avez déjà un compte <a href="{{ path('app_login') }}">Connectez-vous</a>.</p>
+    </div>
+{% endblock %}

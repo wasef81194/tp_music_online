@@ -1,0 +1,36 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Style{% endblock %}
+
+{% block body %}
+    <div class="card mt-1 m-4 p-3 ">
+        <h1>Styles</h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for style in styles %}
+                <tr>
+                    <td>{{ style.id }}</td>
+                    <td>{{ style.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_style_show', {'id': style.id}) }}">Voir</a>
+                        <a href="{{ path('app_admin_style_edit', {'id': style.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary fit-content" href="{{ path('app_admin_style_new') }}">Nouveau style</a>
+    </div>
+{% endblock %}

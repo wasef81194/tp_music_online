@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Interprete{% endblock %}
+
+{% block body %}
+    <div class="card mt-1 m-4 p-3">
+        <a href="{{ path('app_admin_interprete_index') }}"> < Retour</a>
+        <h1>Créer un nouvelle interprète</h1>
+
+        {{ include('admin/interprete/_form.html.twig') }}
+    </div>
+{% endblock %}

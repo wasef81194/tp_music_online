@@ -1,0 +1,21 @@
+{% extends '/admin/base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <div class="card mt-1 m-4 p-3">
+        <a href="{{ path('app_admin_user_index') }}"> < Retour </a>
+        <h1>Mofifier un utilisateur</h1>
+        {% for message in app.flashes('edit-user-error') %}
+        <div class="alert alert-danger mt-2 p-2">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% for message in app.flashes('edit-user-success') %}
+            <div class="alert alert-success mt-2 p-2">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ include('admin/user/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
+{% endblock %}

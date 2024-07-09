@@ -1,0 +1,36 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Interprete index{% endblock %}
+
+{% block body %}
+    <div class="card mt-1 m-4 p-3">
+        <h1>Interprètes</h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for interprete in interpretes %}
+                <tr>
+                    <td>{{ interprete.id }}</td>
+                    <td>{{ interprete.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_interprete_show', {'id': interprete.id}) }}">Voir</a>
+                        <a href="{{ path('app_admin_interprete_edit', {'id': interprete.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-success fit-content" href="{{ path('app_admin_interprete_new') }}">Ajouter un interprète</a>
+    </div>
+{% endblock %}

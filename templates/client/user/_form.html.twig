@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    <div>
+        {{ form_label(form.email, null, {'label_attr': {'class': 'form-label w-100'} }) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'} } ) }}
+    </div>
+    <div class="mt-2">
+        {{ form_label(form.password, null, {'label_attr': {'class': 'form-label w-100'} }) }}
+        {{ form_widget(form.password, {'attr': {'class': 'form-control'} } ) }}
+    </div>
+    <button type="submit" class="btn btn-primary w-100  mt-4">{{ button_label|default('Inscription') }}</button>
+{{ form_end(form) }}

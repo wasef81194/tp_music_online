@@ -1,0 +1,17 @@
+
+@import "~bootstrap/scss/bootstrap";
+@import "./login.scss";
+body {
+    background-color: #000000 !important;
+    color: white;
+}
+.card{
+    background-color: #121212 !important;
+    color: white;
+}
+.table-dark th, .table-dark td{
+    background: none;
+}
+.fit-content{
+    max-width: fit-content;
+}

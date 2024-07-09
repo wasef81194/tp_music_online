@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit Style{% endblock %}
+
+{% block body %}
+    <div class="card mt-1 m-4 p-3">
+        <a class="mt-1 mb-2 " href="{{ path('app_admin_style_index') }}"> < Retour</a>
+        <h1>Modifier le style</h1>
+
+        {{ include('admin/style/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
+{% endblock %}
