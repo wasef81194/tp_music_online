@@ -30,9 +30,14 @@ class AdminMusiqueController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+          
             $entityManager->persist($musique);
             $entityManager->flush();
-
+            foreach ($musique->getStyles() as $style) {
+                $style->addMusique($musique);
+                $entityManager->persist($style);
+                $entityManager->flush();
+            }
             return $this->redirectToRoute('app_admin_musique_index', [], Response::HTTP_SEE_OTHER);
         }
 

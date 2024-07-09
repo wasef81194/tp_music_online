@@ -24,6 +24,10 @@ class Album
     #[ORM\OneToMany(targetEntity: Musique::class, mappedBy: 'album')]
     private Collection $musiques;
 
+    #[ORM\OneToOne(mappedBy: 'album', cascade: ['persist', 'remove'])]
+    private ?Image $image = null;
+
+
     public function __construct()
     {
         $this->musiques = new ArrayCollection();
@@ -75,4 +79,27 @@ class Album
 
         return $this;
     }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($image === null && $this->image !== null) {
+            $this->image->setAlbum(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($image !== null && $image->getAlbum() !== $this) {
+            $image->setAlbum($this);
+        }
+
+        $this->image = $image;
+
+        return $this;
+    }
+    
 }

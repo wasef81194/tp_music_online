@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Entity;
 
 use App\Repository\MusiqueRepository;
@@ -18,8 +17,8 @@ class Musique
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column]
-    private ?float $temps = null;
+    #[ORM\Column(type: "time")]
+    private ?\DateTimeInterface $temps = null;
 
     #[ORM\ManyToOne(inversedBy: 'musiques')]
     private ?Interprete $interprete = null;
@@ -55,12 +54,12 @@ class Musique
         return $this;
     }
 
-    public function getTemps(): ?float
+    public function getTemps(): ?\DateTimeInterface
     {
         return $this->temps;
     }
 
-    public function setTemps(float $temps): static
+    public function setTemps(\DateTimeInterface $temps): static
     {
         $this->temps = $temps;
 

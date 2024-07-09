@@ -1,37 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}Musique index{% endblock %}
+{% block title %}Musiques{% endblock %}
 
 {% block body %}
-    <h1>Musique index</h1>
+    <div class="card mt-1 m-4 p-3">
+        <h1>Musiques</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Temps</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for musique in musiques %}
-            <tr>
-                <td>{{ musique.id }}</td>
-                <td>{{ musique.nom }}</td>
-                <td>{{ musique.temps }}</td>
-                <td>
-                    <a href="{{ path('app_musique_show', {'id': musique.id}) }}">show</a>
-                    <a href="{{ path('app_musique_edit', {'id': musique.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Temps</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for musique in musiques %}
+                <tr>
+                    <td>{{ musique.id }}</td>
+                    <td>{{ musique.nom }}</td>
+                    <td>{{ musique.temps ? musique.temps|date('H:i') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_musique_show', {'id': musique.id}) }}">Voir</a>
+                        <a href="{{ path('app_admin_musique_edit', {'id': musique.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_musique_new') }}">Create new</a>
+        <a class="btn btn-success fit-content" href="{{ path('app_admin_musique_new') }}">Ajouter une musique</a>
+    </div>
 {% endblock %}

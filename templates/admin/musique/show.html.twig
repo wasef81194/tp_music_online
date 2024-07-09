@@ -1,30 +1,90 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Musique{% endblock %}
 
 {% block body %}
-    <h1>Musique</h1>
+    <div class="card mt-1 m-4 p-3">
 
-    <table class="table">
-        <tbody>
+        <a href="{{ path('app_admin_musique_index') }}">< Retour</a>
+        <h1>Musique</h1>
+
+        <table class="table table-dark">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ musique.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ musique.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Temps</th>
+                    <td>{{ musique.temps ? musique.temps|date('H:i') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex mt-3">
+            <a class="btn btn-primary" href="{{ path('app_admin_musique_edit', {'id': musique.id}) }}">Modifier</a>
+            {{ include('admin/musique/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <div class="card mt-1 m-4 p-3">
+        <h2>Interprète</h2>
+        <table class="table table-dark">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{musique.interprete.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{musique.interprete.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Action</th>
+                    <td><a href="{{ path('app_admin_interprete_show', {'id': musique.interprete.id}) }}">Voir</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% if musique.album %}
+        <div class="card mt-1 m-4 p-3">
+            <h2>Album</h2>
+            <table class="table table-dark">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{musique.album.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{musique.album.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Action</th>
+                        <td><a href="{{ path('app_admin_album_show', {'id': musique.album.id}) }}">Voir</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    <div class="card mt-1 m-4 p-3">
+        <h2>Styles</h2>
+        <table class="table table-dark">
             <tr>
                 <th>Id</th>
-                <td>{{ musique.id }}</td>
+                <td>Nom</td>
+                <td>Actions</td>
             </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ musique.nom }}</td>
-            </tr>
-            <tr>
-                <th>Temps</th>
-                <td>{{ musique.temps }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_musique_index') }}">back to list</a>
-
-    <a href="{{ path('app_musique_edit', {'id': musique.id}) }}">edit</a>
-
-    {{ include('musique/_delete_form.html.twig') }}
+            {% for style in musique.styles %}
+                <tr>
+                    <td>{{ style.id }}</td>
+                    <td>{{ style.nom }}</td>
+                    <td> <a href="{{ path('app_admin_style_show', {'id': style.id}) }}">Voir</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

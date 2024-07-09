@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Album{% endblock %}
+
+{% block body %}
+    <div class="d-flex w-100">
+        <div class="card card-album mt-1 m-4 p-3">
+            <img src="{{ asset('uploads/albums/' ~ album.image.name) }}" alt="{{ album.nom }}">
+        </div>
+        <div class="card mt-1 m-4 p-3 w-100">
+            <a href="{{ path('app_admin_album_index') }}"> < Retour</a>
+            <h1>Album</h1>
+            <table class="table table-dark">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ album.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ album.nom }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="d-flex mt-3">
+                <a class="btn btn-primary" href="{{ path('app_album_edit', {'id': album.id}) }}">Modifier</a>
+                {{ include('admin/album/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <div class="card mt-1 m-4 p-3">
+        <h2>Musiques</h2>
+        <table class="table table-dark">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>Nom</td>
+                    <td>Durée</td>
+                    <td>Actions</td>
+                </tr>
+                {% for musique in album.musiques %}
+                    <tr>
+                        <td>{{ musique.id }}</td>
+                        <td>{{ musique.nom }}</td>
+                        <td>{{ musique.temps ? musique.temps|date('H:i') : '' }}</td>
+                        <td> <a href="{{ path('app_admin_musique_show', {'id': musique.id}) }}">Voir</a></td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+       
+    </div>
+{% endblock %}

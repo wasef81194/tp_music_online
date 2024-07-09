@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification Album{% endblock %}
+
+{% block body %}
+    <div class="card mt-1 m-4 p-3">
+        
+        <a href="{{ path('app_admin_album_index') }}"> < Retour</a>
+        <h1>Modifier l'album</h1>
+        {{ include('admin/album/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    </div>
+{% endblock %}
